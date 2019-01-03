@@ -21,9 +21,9 @@ Vue.use(VueRouter);
 const router = new VueRouter({
     mode: 'history',
     routes: [
-        {path: '/', component: require('./components/List.vue'), name: 'list'},
-        {path: '/create', component: require('./components/Form.vue'), name: 'create'},
-        {path: '/:id', component: require('./components/Detail.vue'), name: 'detail'}
+        {path: '/public/topics', component: require('./components/List.vue'), name: 'list'},
+        {path: '/public/topics/create', component: require('./components/Form.vue'), name: 'create'},
+        {path: '/public/topics/:id', component: require('./components/Detail.vue'), name: 'detail'}
     ]
 });
 
