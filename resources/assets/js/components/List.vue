@@ -1,5 +1,8 @@
 <template>
     <div class="container">
+        <div v-if="deleted" class="alert alert-primary" role="alert">
+            削除しました
+        </div>
         <div class="list-group">
             <router-link v-for="( item, key, index ) in items" :key="key"
                          :to="{ name: 'detail', params: { id: item.id } }" class="list-group-item">
@@ -15,7 +18,8 @@
     export default {
         data: function () {
             return {
-                items: null
+                items: null,
+                deleted: false,
             }
         },
         mounted: function () {
@@ -32,6 +36,8 @@
                 axios.delete('/public/api/topics/' + id)
                     .then(() => {
                         this.$delete(this.items, key);
+                        this.deleted = true;
+                        console.log('削除しました！')
                     })
             }
         }
