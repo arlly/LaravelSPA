@@ -3,6 +3,14 @@
         <div v-if="saved" class="alert alert-primary" role="alert">
             保存しました
         </div>
+
+        <div v-if="is_error">
+            <p>エラーがあります！</p>
+            <ul>
+                <li v-for="(error) in errors">{{ error }}</li>
+            </ul>
+        </div>
+
         <form>
             <div class="form-group">
                 <label for="TopicTitle">タイトル</label>
@@ -25,6 +33,8 @@
                 saved: false,
                 title: '',
                 content: '',
+                errors: '',
+                is_error: false
             }
         },
         methods: {
@@ -38,6 +48,11 @@
                         this.content = '';
                         this.saved = true;
                         console.log('created');
+                    })
+                    .catch(e => {
+                        console.log(e.response.data.errors);
+                        this.errors = e.response.data.errors;
+                        this.is_error = true;
                     });
             }
         }

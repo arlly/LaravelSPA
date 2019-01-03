@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Eloquent\Topic;
+use App\Http\Requests\TopicRequest;
 use Illuminate\Http\Request;
 
 use App\Http\Resources\Topic as TopicResource;
@@ -35,7 +36,7 @@ class TopicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TopicRequest $request)
     {
         $topic = new Topic();
 
